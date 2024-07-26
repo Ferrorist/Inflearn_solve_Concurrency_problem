@@ -165,4 +165,5 @@ replay_pid*
 .history
 .ionide
 
+**/application-edu.yml
 # End of https://www.toptal.com/developers/gitignore/api/intellij,visualstudiocode,java,redis
