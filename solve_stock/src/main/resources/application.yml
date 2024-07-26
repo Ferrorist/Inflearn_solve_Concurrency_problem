@@ -1,0 +1,5 @@
+spring:
+    application:
+        name: solve_stock
+    profiles:
+        default: edu
