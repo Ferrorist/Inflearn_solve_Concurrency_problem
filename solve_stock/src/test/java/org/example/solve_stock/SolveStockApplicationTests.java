@@ -2,6 +2,7 @@ package org.example.solve_stock;
 
 import org.example.solve_stock.domain.Stock;
 import org.example.solve_stock.repository.StockRepository;
+import org.example.solve_stock.service.PessmisticLockStockService;
 import org.example.solve_stock.service.StockService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +23,9 @@ class SolveStockApplicationTests {
     private StockRepository stockRepository;
 
     @Autowired
-    private StockService stockService;
+//    private StockService stockService;
+    private PessmisticLockStockService stockService;
+
 
     @BeforeEach
     public void before() {
