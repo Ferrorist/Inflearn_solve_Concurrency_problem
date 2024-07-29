@@ -15,13 +15,12 @@ import java.util.concurrent.Executors;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class LettuceLockStockFacadeTest {
-
+class RedissonLockStockFacadeTest {
     @Autowired
     private StockRepository stockRepository;
 
     @Autowired
-    private LettuceLockStockFacade lettuceLockStockFacade;
+    private RedissonLockStockFacade redissonLockStockFacade;
 
 
     @BeforeEach
@@ -39,7 +38,7 @@ class LettuceLockStockFacadeTest {
      */
     @Test
     public void 재고감소() throws InterruptedException {
-        lettuceLockStockFacade.decrease(1L, 1L);
+        redissonLockStockFacade.decrease(1L, 1L);
         Stock stock = stockRepository.findById(1L).orElseThrow();
 
         assertEquals(99, stock.getQuantity());
@@ -56,9 +55,7 @@ class LettuceLockStockFacadeTest {
         for(int i = 0; i < threadCount; i++){
             executorService.submit(() -> {
                 try{
-                    lettuceLockStockFacade.decrease(1L, 1L);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    redissonLockStockFacade.decrease(1L, 1L);
                 } finally {
                     latch.countDown();
                 }
