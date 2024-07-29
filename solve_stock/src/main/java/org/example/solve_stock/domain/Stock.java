@@ -1,9 +1,6 @@
 package org.example.solve_stock.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Stock {
@@ -13,8 +10,14 @@ public class Stock {
     private long id;
 
     private Long productId;
-
     private Long quantity;
+
+    /*
+     * Optimistic Lock 사용을 위해 version column 추가
+     * jakarta 라이브러리 (javax 라이브러리) 를 활용한 Version annotation 을 사용할 것.
+     */
+    @Version
+    private Long version;
 
     public Stock() {
     }
